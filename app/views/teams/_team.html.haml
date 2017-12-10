@@ -6,7 +6,7 @@
     = image_tag team.logo.thumb, size: 100, alt: team.title, |
       title: team.title
   .col-6
-    %span= team.title
+    = link_to team.title, team
   .col
     %strong Captain:
     %span= team.captain.login

@@ -1,6 +1,6 @@
 %p#notice= notice
 %section#teams.container-fluid
   %h2 Teams
-  = render partial: 'team', collection: teams
   - if logged?
     = link_to 'Create or edit your team', :new_team
+  = render partial: 'team', collection: teams

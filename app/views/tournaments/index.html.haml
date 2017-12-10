@@ -10,7 +10,7 @@
         %span= t.participants_number
       .col
         = link_to 'Participants', t
-      - if logged?
+      - if logged? && has_team?
         .col
           - if t.participates? logged?
             = button_to 'Don\'t Participate', dont_participate_path(t.id), |

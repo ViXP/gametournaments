@@ -22,7 +22,8 @@ class Participation < ApplicationRecord
 
   def self.stop_participation captain_id
     team = Team.find_by(captain_id: captain_id)
-    return false unless team && first.tournament.teams.delete(team)
+    part = team ? find_by(team: team, tournament: first.tournament) : false
+    return false unless part && part.destroy
     true
   end
 end
