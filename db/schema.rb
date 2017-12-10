@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 20171209160132) do
   create_table "captains", force: :cascade do |t|
     t.string "login", limit: 50, null: false
     t.string "email", limit: 150, null: false
-    t.string "password", null: false
-    t.string "salt", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_captains_on_email"
@@ -39,6 +37,8 @@ ActiveRecord::Schema.define(version: 20171209160132) do
   create_table "teams_tournaments", id: false, force: :cascade do |t|
     t.bigint "tournament_id", null: false
     t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["team_id", "tournament_id"], name: "index_teams_tournaments_on_team_id_and_tournament_id"
     t.index ["tournament_id", "team_id"], name: "index_teams_tournaments_on_tournament_id_and_team_id"
   end

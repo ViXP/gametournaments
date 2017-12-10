@@ -4,4 +4,8 @@ class Tournament < ApplicationRecord
 
   # Validations
   validates :title, presence: true, length: {maximum: 250}
+
+  def participants_number
+    teams.count
+  end
 end

@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'teams#index'
+  get '/auth/starladder/callback', to: 'sessions#create'
+
+  resources :teams
+  
+  controller :tournaments do
+    scope :tournaments do
+      get '/' => :index
+      get '/:id' => :show
+    end
+  end
 end

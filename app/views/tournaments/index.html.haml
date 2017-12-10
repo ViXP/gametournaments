@@ -1,0 +1,13 @@
+%p#notice= notice
+%section#tournaments.container-fluid
+  %h2 Tournaments
+  -tournaments.each do |t|
+    %article.row
+      .col-6
+        %span= t.title
+      .col
+        %strong Participants number:
+        %span= t.participants_number
+      Participants
+      Participate
+      Abort participation
