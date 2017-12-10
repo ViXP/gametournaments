@@ -1,6 +1,7 @@
-%h2 Team information
-= render 'team', team: team
-%strong 
-  Participates in 
-  = team.participants_number
-  tournaments
+%article.team
+  %h2 Team information
+  = render 'team', team: team
+  %strong 
+    Participates in 
+    = team.participants_number
+    tournaments

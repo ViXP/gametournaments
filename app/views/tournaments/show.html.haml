@@ -1,4 +1,3 @@
-%p#notice= notice
 %section#tournament.container-fluid
   %h2= tournament.title
   %span
@@ -12,9 +11,10 @@
         = date_formatter part.created_at
       .col
         = image_tag part.team.logo.thumb, size: 100, alt: part.team.title, |
-          title: part.team.title
+          title: part.team.title, class: 'img-thumbnail'
       .col-6
         = link_to part.team.title, part.team
       .col
         %strong Captain:
         %span= part.team.captain.login
+  = link_to 'Back', :tournaments

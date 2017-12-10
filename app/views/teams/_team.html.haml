@@ -4,7 +4,7 @@
     %span= date_formatter team.created_at
   .col
     = image_tag team.logo.thumb, size: 100, alt: team.title, |
-      title: team.title
+      title: team.title, class: 'img-thumbnail'
   .col-6
     = link_to team.title, team
   .col
@@ -13,4 +13,5 @@
   - if team.captain_id == logged?
     .col
       = link_to 'Edit', edit_team_path(team.id)
-      = button_to 'Delete', team_path(team.id), method: :delete
+      = button_to 'Delete', team_path(team.id), {method: :delete, |
+        class: 'btn-danger'}

@@ -1,7 +1,10 @@
-%nav
-  = link_to 'Teams', :teams
-  = link_to 'Tournaments', :tournaments
-  - if logged?
-    = link_to 'Sign Out', :logout
-  - else
-    = link_to 'Sign In', :login
+%nav.flex-column
+  .nav-link
+    = link_to 'Teams', :teams
+  .nav-link
+    = link_to 'Tournaments', :tournaments
+  .nav-link
+    - if logged?
+      = link_to 'Sign Out', :logout
+    - else
+      = link_to 'Sign In', :login

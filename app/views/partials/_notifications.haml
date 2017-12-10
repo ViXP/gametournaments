@@ -1,0 +1,5 @@
+- if flash.present? || (defined?(record) && record.errors.present?)
+  - if flash[:alert]
+    .col.alert.alert-danger= flash[:alert]
+  - if flash[:notice]
+    .col.alert.alert-success= flash[:notice]

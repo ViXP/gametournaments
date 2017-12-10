@@ -7,8 +7,15 @@
     = stylesheet_link_tag 'application', media: 'all', |
       'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    = render 'partials/header'
-    = render 'partials/menu'
-    = yield
-    = render 'partials/footer'
+  %body.row
+    .col-2
+      = render 'partials/menu'
+    .col
+      .row.align-items-start
+        = render 'partials/header'
+      .row
+        = render 'partials/notifications'
+      .row
+        = yield
+      .row.align-items-end
+        = render 'partials/footer'
