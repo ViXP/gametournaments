@@ -1,2 +1,20 @@
-%h1 Tournaments#show
-%p Find me in app/views/tournaments/show.html.erb
+%p#notice= notice
+%section#tournament.container-fluid
+  %h2= tournament.title
+  %span
+    %strong Participants number:
+    = tournament.participants_number
+  %h2 Participants
+  - tournament.teams.each do |team|
+    %article.row
+      .col
+        %strong Registration time:
+        NOT IMPLEMENTED
+      .col
+        = image_tag team.logo.thumb, size: 100, alt: team.title, |
+          title: team.title
+      .col-6
+        %span= team.title
+      .col
+        %strong Captain:
+        %span= team.captain.login

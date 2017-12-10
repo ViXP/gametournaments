@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20171209160132) do
 
   create_table "captains", force: :cascade do |t|
     t.string "login", limit: 50, null: false
-    t.string "email", limit: 150, null: false
+    t.string "email", limit: 150
+    t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_captains_on_email"
     t.index ["login"], name: "index_captains_on_login"
   end
 

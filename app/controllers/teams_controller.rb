@@ -2,9 +2,7 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   def index
-    respond_to do |format|
-      format.html { render :index, locals: {teams: Team.all}, status: :ok}
-    end
+    render :index, locals: {teams: Team.all}, status: :ok
   end
 
   def show
