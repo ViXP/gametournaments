@@ -1,14 +1,19 @@
 %p#notice= notice
 %section#tournaments.container-fluid
   %h2 Tournaments
-  -tournaments.each do |t|
-    %a{href: tournament_path(t.id)}
-      %article.row
-        .col-6
-          %span= t.title
+  - tournaments.each do |t|
+    %article.row
+      .col-6
+        %span= t.title
+      .col
+        %strong Participants number:
+        %span= t.participants_number
+      .col
+        = link_to 'Participants', t
+      - if logged?
         .col
-          %strong Participants number:
-          %span= t.participants_number
-        Participants
-    Participate
-    Abort participation
+          - if t.participates? logged?
+            = button_to 'Don\'t Participate', dont_participate_path(t.id), |
+              method: :delete
+          - else
+            = button_to 'Participate', participate_path(t.id)

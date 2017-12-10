@@ -5,16 +5,16 @@
     %strong Participants number:
     = tournament.participants_number
   %h2 Participants
-  - tournament.teams.each do |team|
+  - tournament.participations.each do |part|
     %article.row
       .col
         %strong Registration time:
-        NOT IMPLEMENTED
+        = date_formatter part.created_at
       .col
-        = image_tag team.logo.thumb, size: 100, alt: team.title, |
-          title: team.title
+        = image_tag part.team.logo.thumb, size: 100, alt: part.team.title, |
+          title: part.team.title
       .col-6
-        %span= team.title
+        %span= part.team.title
       .col
         %strong Captain:
-        %span= team.captain.login
+        %span= part.team.captain.login

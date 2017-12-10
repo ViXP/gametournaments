@@ -4,7 +4,7 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    tournament = Tournament.includes(:teams).find_by(id: params[:id])
+    tournament = Tournament.with_participants.find(params[:id])
     if tournament
       render :show, locals: {tournament: tournament}, status: :ok
     else

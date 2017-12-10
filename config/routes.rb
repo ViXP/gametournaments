@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'captain_info/show'
+
   root to: 'teams#index'
   
   get '/auth/starladder/callback', to: 'sessions#create'
@@ -7,10 +9,14 @@ Rails.application.routes.draw do
 
   resources :teams
   
-  controller :tournaments do
-    scope :tournaments do
+  scope :tournaments do
+    controller :tournaments do
       get '/' => :index, as: :tournaments
       get '/:id' => :show, as: :tournament
+    end
+    controller :participations do
+      post '/:id' => :participate, as: :participate
+      delete '/:id' => :stop_participation, as: :dont_participate
     end
   end
 end

@@ -8,4 +8,10 @@
         - team.errors.full_messages.each do |message|
           %li= message
   .actions
+    = form.label :title
+    = form.text_field :title
+    = form.label :logo
+    - if team.logo.thumb.present?
+      = image_tag team.logo.thumb, size: 100
+    = form.file_field :logo
     = form.submit

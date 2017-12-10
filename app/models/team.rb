@@ -1,7 +1,8 @@
 class Team < ApplicationRecord
   # Associations
   belongs_to :captain
-  has_and_belongs_to_many :tournaments
+  has_many :participations, dependent: :destroy
+  has_many :tournaments, -> { distinct }, through: :participations
 
   mount_uploader :logo, LogoUploader
 
@@ -13,4 +14,6 @@ class Team < ApplicationRecord
   }
   validates_integrity_of :logo
   validates_processing_of :logo
+
+  delegate :participants_number, to: :participations
 end

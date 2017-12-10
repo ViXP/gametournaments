@@ -1,20 +1,6 @@
 %p#notice= notice
 %section#teams.container-fluid
   %h2 Teams
-  -teams.each do |team|
-    %article.row
-      .col
-        %strong Created at:
-        %span= date_formatter team.created_at
-      .col
-        = image_tag team.logo.thumb, size: 100, alt: team.title, |
-          title: team.title
-      .col-6
-        %span= team.title
-      .col
-        %strong Captain:
-        %span= team.captain.login
-
-      Edit
-      Delete
-  Create
+  = render partial: 'team', collection: teams
+  - if logged?
+    = link_to 'Create or edit your team', :new_team
