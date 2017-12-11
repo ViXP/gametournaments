@@ -1,25 +1,5 @@
 @import 'bootstrap';
+@import 'layout';
+@import 'components/header';
 @import 'components/menu';
-
-html {
-  height: 100%;
-}
-
-html, body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: block;
-}
-
-footer {
-  bottom: 0;
-  position: absolute;
-}
-
-input[type="submit"], button {
-  margin-bottom: 5px;
-}
+@import 'components/footer';

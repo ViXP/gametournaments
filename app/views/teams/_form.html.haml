@@ -4,14 +4,14 @@
       - team.errors.full_messages.each do |message|
         = message
   .team_form
-    .row
-      = form.label :title
-      = form.text_field :title
-    .row
-      - if team.logo.thumb.present?
-        .row
-          .col= image_tag team.logo.thumb, size: 100
-    .row
-      = form.label :logo
-      = form.file_field :logo
+    = form.label :title
+    = form.text_field :title
+    %br
+    = form.label :logo
+    = form.file_field :logo
+    %br
+    - if team.logo.thumb.present?
+      = image_tag team.logo.thumb, size: 150, class: 'img-thumbnail'
+    %br
+    %hr
     = form.submit nil, class: 'btn-success'

@@ -13,9 +13,10 @@
     .col
       .row.align-items-start
         = render 'partials/header'
-      .row
+      .row.align-items-start
         = render 'partials/notifications'
       .row#content
         = yield
       .row.align-items-end
-        = render 'partials/footer'
+        .col
+          = render 'partials/footer'
