@@ -1,5 +1,5 @@
 class ParticipationsController < ApplicationController
-  before_action :set_tournament, only: %i[participate, stop_participation]
+  before_action :set_tournament, only: [:participate, :stop_participation]
 
   def participate
     if @tournament && @tournament.participate(logged?)

@@ -2,4 +2,4 @@
 
 Test project for **Starladder**
 
-*TODO:* Markup, pagination, code style, internationalization
+*TODO:* Markup, pagination, internationalization

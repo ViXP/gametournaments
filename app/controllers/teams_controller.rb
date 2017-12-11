@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[edit, update, destroy]
+  before_action :set_team, only: [:edit, :update, :destroy]
 
   def index
     render :index, locals: { teams: Team.all }, status: :ok
