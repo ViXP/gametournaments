@@ -1,40 +1,25 @@
 class ImageSizeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    if value.present? && value.cached?
-      checks = [
-        { :option => :width, 
-          :field => :width, 
-          :function => :'==',
-          :message =>"width must be %d px."},
-        { :option => :height, 
-          :field => :height, 
-          :function => :'==',
-          :message =>"height must be %d px."},
-        { :option => :max_width, 
-          :field => :width, 
-          :function => :'<=',
-          :message =>"width must be at most %d px."},
-        { :option => :max_height, 
-          :field => :height, 
-          :function => :'<=',
-          :message =>"height must be at most %d px."},
-        { :option => :min_width, 
-          :field => :width, 
-          :function => :'>=',
-          :message =>"width must be at least %d px."},
-        { :option => :min_height, 
-          :field => :height, 
-          :function => :'>=',
-          :message =>"height must be at least %d px."},
-      ]
-
-      image = record.method(attribute.to_sym).call
-      checks.each do |check|
-        if options.has_key?(check[:option]) && !image.method(check[:field]).call
-          .send(check[:function], options[check[:option]])
-          record.errors[attribute] << check[:message] % options[check[:option]]
-        end
+    return true unless value.present? && value.cached?
+    image = record.method(attribute.to_sym).call
+    possible_checks.each do |check|
+      if options.key?(check[:opt]) && !image.method(check[:fld]).call
+        .send(check[:func], options[check[:opt]])
+        record.errors[attribute] << check[:msg] % options[check[:opt]]
       end
     end
+  end
+
+  private
+
+  def possible_checks
+    [
+      { opt: :width, fld: :width, func: :'==', msg: 'width must be %dpx.' },
+      { opt: :height, fld: :height, func: :'==', msg: 'height must be %dpx.' },
+      { opt: :max_width, fld: :width, func: :'<=', msg: 'width is > %dpx.' },
+      { opt: :max_height, fld: :height, func: :'<=', msg: 'height is > %dpx.' },
+      { opt: :min_width, fld: :width, func: :'>=', msg: 'width is < %d px.' },
+      { opt: :min_height, fld: :height, func: :'>=', msg: 'height is < %d px.' }
+    ]
   end
 end

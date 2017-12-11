@@ -7,7 +7,7 @@ class LogoUploader < CarrierWave::Uploader::Base
 
   storage :file
 
-  def default_url(*args)
+  def default_url(*)
     ActionController::Base.helpers.asset_path('no-logo.svg')
     'no-logo.svg'
   end
@@ -23,11 +23,11 @@ class LogoUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-    %w(jpg jpeg png)
+    %w[jpg jpeg png]
   end
 
   def content_type_whitelist
-    /image\//
+    %r{image\/}
   end
 
   def filename
@@ -40,10 +40,10 @@ class LogoUploader < CarrierWave::Uploader::Base
 
   private
 
-  def save_dimensions file
+  def save_dimensions(file)
     return true unless version_name.blank?
     if file.path.nil?
-      img = CarrierWave::MiniMagick::Image::read(file.file)
+      img = CarrierWave::MiniMagick::Image.read(file.file)
       @width = img[:width]
       @height = img[:height]
     else

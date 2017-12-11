@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
     session[:captain_id] || false
   end
 
-  def has_team?
+  def team?
     logged? && Team.find_by(captain_id: logged?)
   end
 
-  helper_method :logged?, :has_team?
+  helper_method :logged?, :team?
 
   private
 

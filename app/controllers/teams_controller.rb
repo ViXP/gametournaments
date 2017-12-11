@@ -1,14 +1,14 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:edit, :update, :destroy]
+  before_action :set_team, only: %i[edit, update, destroy]
 
   def index
-    render :index, locals: {teams: Team.all}, status: :ok
+    render :index, locals: { teams: Team.all }, status: :ok
   end
 
   def show
     team = Team.find_by(id: params[:id])
     if team
-      render :show, locals: {team: team}, status: :ok
+      render :show, locals: { team: team }, status: :ok
     else
       redirect_to :root, notice: 'Incorrect team id', status: :moved_permanently
     end
@@ -20,13 +20,13 @@ class TeamsController < ApplicationController
     if team
       redirect_to edit_team_path(team.id)
     else
-      render :new, locals: {team: Team.new}
+      render :new, locals: { team: Team.new }
     end
   end
 
   def edit
     if @team
-      render :edit, locals: {team: @team}, status: :ok
+      render :edit, locals: { team: @team }, status: :ok
     else
       permission_denied
     end
@@ -39,7 +39,7 @@ class TeamsController < ApplicationController
       redirect_to team, notice: 'Team was successfully created',
         status: :found
     else
-      render :new, locals: {team: team}, status: :not_acceptable
+      render :new, locals: { team: team }, status: :not_acceptable
     end
   end
 
@@ -47,7 +47,7 @@ class TeamsController < ApplicationController
     if @team.update(team_params)
       redirect_to @team, notice: 'Team was successfully updated', status: :found
     elsif @team
-      render :edit, locals: {team: @team}, status: :not_acceptable
+      render :edit, locals: { team: @team }, status: :not_acceptable
     else
       permission_denied
     end
@@ -55,7 +55,7 @@ class TeamsController < ApplicationController
 
   def destroy
     if @team && @team.destroy
-      redirect_to :teams, notice: 'Team was successfully destroyed.', 
+      redirect_to :teams, notice: 'Team was successfully destroyed.',
         status: :found
     else
       permission_denied
@@ -63,7 +63,7 @@ class TeamsController < ApplicationController
   end
 
   private
-  
+
   def set_team
     @team = Team.find_by(id: params[:id], captain_id: logged?)
   end

@@ -6,7 +6,7 @@
     %span.participants-number= tournament.participants_number
   .col
     = link_to 'Participants', tournament
-  - if logged? && has_team?
+  - if logged? && team?
     .col
       - if tournament.participates?(logged?)
         = button_tag 'Don\'t Participate', |
