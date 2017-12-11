@@ -7,6 +7,11 @@ class LogoUploader < CarrierWave::Uploader::Base
 
   storage :file
 
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path('no-logo.svg')
+    'no-logo.svg'
+  end
+
   def store_dir
     "uploads/teams/#{model.id}"
   end

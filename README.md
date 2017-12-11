@@ -2,4 +2,5 @@
 
 Test project for **Starladder**
 
-*TODO:* Markup, tournaments AJAX, logo resolution validation
+*TODO:* Markup, tournaments AJAX, logo resolution validation, pagination,
+code style, internationalization

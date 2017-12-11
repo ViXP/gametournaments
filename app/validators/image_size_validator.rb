@@ -1,6 +1,6 @@
 class ImageSizeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    unless value.blank?
+    if value.present? && value.cached?
       checks = [
         { :option => :width, 
           :field => :width, 
@@ -30,8 +30,8 @@ class ImageSizeValidator < ActiveModel::EachValidator
 
       image = record.method(attribute.to_sym).call
       checks.each do |check|
-        if options.has_key?(check[:option]) && !image.method(check[:field])
-          .call.send(check[:function], options[check[:option]])
+        if options.has_key?(check[:option]) && !image.method(check[:field]).call
+          .send(check[:function], options[check[:option]])
           record.errors[attribute] << check[:message] % options[check[:option]]
         end
       end
