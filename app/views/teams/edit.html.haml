@@ -1,5 +1,8 @@
-%h2 Editing Team
-= render 'form', team: @team
-= link_to 'Show', @team
-|
-= link_to 'Back', teams_path
+%article.container-fluid
+  %h2 Editing Team
+  .row
+    = render 'form', team: @team
+  .row
+    = link_to 'Show', @team
+    |
+    = link_to 'Back', teams_path
