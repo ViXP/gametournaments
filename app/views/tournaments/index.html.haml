@@ -1,21 +1,4 @@
+= javascript_include_tag('tournaments') 
 %section#tournaments.container-fluid
   %h2 Tournaments
-  - tournaments.each do |t|
-    %article.row
-      .col-6
-        %span= t.title
-      .col
-        %strong Participants number:
-        %span= t.participants_number
-      .col
-        = link_to 'Participants', t
-      - if logged? && has_team?
-        .col
-          - if t.participates?(logged?)
-            = button_to 'Don\'t Participate', {action: :stop_participation, |
-              controller: :participations, id: t.id}, |
-              {method: :delete, class: 'btn-secondary'}
-          - else
-            = button_to 'Participate', {controller: :participations, |
-              action: :participate, id: t.id}, |
-              {class: 'btn-primary'}
+  = render partial: 'tournament_small', collection: tournaments, as: :tournament

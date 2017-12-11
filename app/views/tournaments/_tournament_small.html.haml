@@ -1,0 +1,16 @@
+%article.row{data: {number: tournament.id}}
+  .col-6
+    %span= tournament.title
+  .col
+    %strong Participants number:
+    %span.participants-number= tournament.participants_number
+  .col
+    = link_to 'Participants', tournament
+  - if logged? && has_team?
+    .col
+      - if tournament.participates?(logged?)
+        = button_tag 'Don\'t Participate', |
+          class: 'btn-secondary', data: {id: tournament.id, participates: true}
+      - else
+        = button_tag 'Participate', |
+          class: 'btn-primary', data: {id: tournament.id, participates: false}

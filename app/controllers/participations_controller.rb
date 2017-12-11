@@ -3,17 +3,19 @@ class ParticipationsController < ApplicationController
 
   def participate
     if @tournament && @tournament.participate(logged?)
-      redirect_to :tournaments, status: :found
+      head :ok
+      #render :tournaments, remote: true, status: :found
     else
-      permission_denied
+      head :bad_request
     end
   end
 
   def stop_participation
     if @tournament && @tournament.stop_participation(logged?)
-      redirect_to :tournaments, status: :found
+      head :ok
+      #render :tournaments, remote: true, status: :found
     else
-      permission_denied
+      head :bad_request
     end
   end
 
