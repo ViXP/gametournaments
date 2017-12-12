@@ -12,4 +12,7 @@ Sample project for **Starladder**
  - AJAX requests implemented for fast tournaments subscriptions
  - Uploader with image validator implemented for teams' logos
 
-*TODO:* Markup, tournaments & teams pagination, internationalization, queries optimization (ex. moving the participants counter directly to the tables), unit, functional, integration tests, caching (partials and models)...
+*TODO:* Real world responsive markup; tournaments & teams pagination;
+internationalization; queries optimization for users participations
+functionality; unit, functional, integration tests; caching (partials and
+models)...

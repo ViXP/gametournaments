@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
   end
 
   def show
-    team = Team.find_by(id: params[:id])
+    team = Team.with_participations_number.find_by(id: params[:id])
     if team
       render :show, locals: { team: team }, status: :ok
     else

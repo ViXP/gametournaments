@@ -12,10 +12,6 @@ class Participation < ApplicationRecord
     find_by(team_id: team.id) if team
   end
 
-  def self.participants_number
-    count
-  end
-
   def self.participate(captain_id)
     team = Team.find_by(captain_id: captain_id)
     return false unless team && create(team: team, tournament: first.tournament)
