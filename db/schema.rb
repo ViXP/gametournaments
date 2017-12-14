@@ -15,23 +15,30 @@ ActiveRecord::Schema.define(version: 20171210204327) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "captains", force: :cascade do |t|
+  create_table "captains", id: :serial, force: :cascade do |t|
     t.string "login", limit: 50, null: false
     t.string "email", limit: 150
     t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["login"], name: "index_captains_on_login"
+    t.index ["login"], name: "index_captains_on_login", unique: true
   end
 
-  create_table "teams", force: :cascade do |t|
+  create_table "events", id: false, force: :cascade do |t|
+    t.integer "event_type", null: false
+    t.integer "value", null: false
+    t.datetime "time", null: false
+    t.index ["event_type", "time"], name: "events_event_type_time_key", unique: true
+  end
+
+  create_table "teams", id: :serial, force: :cascade do |t|
     t.string "logo"
     t.string "title", null: false
     t.bigint "captain_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["captain_id"], name: "index_teams_on_captain_id"
-    t.index ["title"], name: "index_teams_on_title"
+    t.index ["title"], name: "index_teams_on_title", unique: true
   end
 
   create_table "teams_tournaments", force: :cascade do |t|
