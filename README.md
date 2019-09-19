@@ -1,8 +1,8 @@
 # Games Tournaments Register
 
 ### Dependencies:
-`Ruby 2.4.2`
-`Rails 5.1.5`
+`Ruby 2.7.0`
+`Rails 6.0`
 `PostgreSQL database`
 
 ### Project description:
